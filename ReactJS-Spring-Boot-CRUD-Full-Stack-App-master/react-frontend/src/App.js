@@ -9,6 +9,8 @@ import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 import LoginComponent from './components/LoginComponent';
+import TaskListComponent from './components/TaskListComponent';
+import CreateTaskComponent from './components/CreateTaskComponent';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
                           <Route path = "/employees" component = {ListEmployeeComponent}></Route>
                           <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
                           <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
+                          <Route path = "/employees/:id/tasks" component = {TaskListComponent}></Route>
+                          <Route path = "/employees/:id/add-task/:taskId" component = {CreateTaskComponent}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
                 </div>
