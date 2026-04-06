@@ -4,6 +4,10 @@ const BASE_URL = "http://localhost:8080/api/v1";
 
 class TaskService {
 
+    getAllTasks() {
+        return axios.get(`${BASE_URL}/tasks`);
+    }
+
     getTasksByEmployee(employeeId) {
         return axios.get(`${BASE_URL}/employees/${employeeId}/tasks`);
     }

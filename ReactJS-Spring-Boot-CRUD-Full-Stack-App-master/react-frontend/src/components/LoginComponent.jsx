@@ -15,7 +15,7 @@ class LoginComponent extends Component {
         e.preventDefault();
         // Skip actual authentication logic for display purposes,
         // simply navigate to the main application index on submission.
-        this.props.history.push('/employees');
+        this.props.history.push('/dashboard');
     }
 
     render() {

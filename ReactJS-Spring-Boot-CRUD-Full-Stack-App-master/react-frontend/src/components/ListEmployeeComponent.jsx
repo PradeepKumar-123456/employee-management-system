@@ -26,7 +26,7 @@ class ListEmployeeComponent extends Component {
         this.props.history.push(`/add-employee/${id}`);
     }
     viewTasks(id){
-        this.props.history.push(`/employees/${id}/tasks`);
+        this.props.history.push(`/employees/${id}/add-task/_add`);
     }
 
     componentDidMount(){
@@ -94,7 +94,7 @@ class ListEmployeeComponent extends Component {
                                                 <button onClick={ () => this.viewEmployee(employee.id)} className="btn-action-modern btn-action-view">View</button>
                                                 <button onClick={ () => this.editEmployee(employee.id)} className="btn-action-modern btn-action-update">Edit</button>
                                                 <button onClick={ () => this.deleteEmployee(employee.id)} className="btn-action-modern btn-action-delete">Delete</button>
-                                                <button onClick={ () => this.viewTasks(employee.id)} className="btn-action-modern btn-action-tasks">Tasks</button>
+                                                <button onClick={ () => this.viewTasks(employee.id)} className="btn-action-modern btn-action-tasks">Assign Task</button>
                                             </div>
                                          </td>
                                     </tr>
