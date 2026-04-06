@@ -1,51 +1,63 @@
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService';
+import './CreateEmployeeComponent.css';
 
 class CreateEmployeeComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            // step 2
             id: this.props.match.params.id,
             firstName: '',
             lastName: '',
-            emailId: ''
+            emailId: '',
+            errorMessage: ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
     }
 
-    // step 3
     componentDidMount(){
-
-        // step 4
         if(this.state.id === '_add'){
             return
         }else{
             EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
                 let employee = res.data;
-                this.setState({firstName: employee.firstName,
+                this.setState({
+                    firstName: employee.firstName,
                     lastName: employee.lastName,
                     emailId : employee.emailId
                 });
+            }).catch(error => {
+                this.setState({errorMessage: "Could not fetch employee details. Is the backend running?"});
             });
         }        
     }
+
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
-        console.log('employee => ' + JSON.stringify(employee));
+        
+        // Basic validation
+        if(!this.state.firstName || !this.state.lastName || !this.state.emailId) {
+            this.setState({errorMessage: "Please fill in all fields before saving."});
+            return;
+        }
 
-        // step 5
+        let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
+        this.setState({errorMessage: ''}); // Clear previous errors
+
         if(this.state.id === '_add'){
             EmployeeService.createEmployee(employee).then(res =>{
                 this.props.history.push('/employees');
+            }).catch(error => {
+                this.setState({errorMessage: "Failed to save employee. Please make sure the backend is running! Error: " + error.message});
             });
         }else{
             EmployeeService.updateEmployee(employee, this.state.id).then( res => {
                 this.props.history.push('/employees');
+            }).catch(error => {
+                this.setState({errorMessage: "Failed to update employee. Please make sure the backend is running! Error: " + error.message});
             });
         }
     }
@@ -68,47 +80,71 @@ class CreateEmployeeComponent extends Component {
 
     getTitle(){
         if(this.state.id === '_add'){
-            return <h3 className="text-center">Add Employee</h3>
+            return <h3>Add New Employee</h3>
         }else{
-            return <h3 className="text-center">Update Employee</h3>
+            return <h3>Update Employee</h3>
         }
     }
+
     render() {
         return (
-            <div>
-                <br></br>
-                   <div className = "container">
-                        <div className = "row">
-                            <div className = "card col-md-6 offset-md-3 offset-md-3">
-                                {
-                                    this.getTitle()
-                                }
-                                <div className = "card-body">
-                                    <form>
-                                        <div className = "form-group">
-                                            <label> First Name: </label>
-                                            <input placeholder="First Name" name="firstName" className="form-control" 
-                                                value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
-                                        </div>
-                                        <div className = "form-group">
-                                            <label> Last Name: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
-                                                value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                                        </div>
-                                        <div className = "form-group">
-                                            <label> Email Id: </label>
-                                            <input placeholder="Email Address" name="emailId" className="form-control" 
-                                                value={this.state.emailId} onChange={this.changeEmailHandler}/>
-                                        </div>
+            <div className="form-container">
+                <div className="form-header">
+                    {this.getTitle()}
+                </div>
 
-                                        <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
-                                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                {this.state.errorMessage && (
+                    <div className="error-banner">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        {this.state.errorMessage}
+                    </div>
+                )}
 
-                   </div>
+                <form>
+                    <div className="form-group-modern">
+                        <label>First Name</label>
+                        <input 
+                            placeholder="Enter first name" 
+                            name="firstName" 
+                            className="form-control-modern" 
+                            value={this.state.firstName} 
+                            onChange={this.changeFirstNameHandler}
+                        />
+                    </div>
+                    <div className="form-group-modern">
+                        <label>Last Name</label>
+                        <input 
+                            placeholder="Enter last name" 
+                            name="lastName" 
+                            className="form-control-modern" 
+                            value={this.state.lastName} 
+                            onChange={this.changeLastNameHandler}
+                        />
+                    </div>
+                    <div className="form-group-modern">
+                        <label>Email Address</label>
+                        <input 
+                            placeholder="Enter email address" 
+                            name="emailId" 
+                            className="form-control-modern" 
+                            value={this.state.emailId} 
+                            onChange={this.changeEmailHandler}
+                        />
+                    </div>
+
+                    <div className="form-actions">
+                        <button type="button" className="btn-cancel-modern" onClick={this.cancel.bind(this)}>
+                            Cancel
+                        </button>
+                        <button type="submit" className="btn-save-modern" onClick={this.saveOrUpdateEmployee}>
+                            Save Employee
+                        </button>
+                    </div>
+                </form>
             </div>
         )
     }

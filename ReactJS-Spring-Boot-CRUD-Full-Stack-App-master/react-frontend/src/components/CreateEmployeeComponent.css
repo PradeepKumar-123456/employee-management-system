@@ -1,0 +1,121 @@
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    font-family: 'Inter', sans-serif;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.form-group-modern {
+    margin-bottom: 24px;
+}
+
+.form-group-modern label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-control-modern {
+    width: 100%;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #1e293b;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control-modern:focus {
+    outline: none;
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-control-modern::placeholder {
+    color: #94a3b8;
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 35px;
+}
+
+.btn-save-modern {
+    flex: 1.5;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-save-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -4px rgba(79, 70, 229, 0.5);
+}
+
+.btn-cancel-modern {
+    flex: 1;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel-modern:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.error-banner {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
