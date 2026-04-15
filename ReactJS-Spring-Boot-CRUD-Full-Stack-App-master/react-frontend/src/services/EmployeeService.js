@@ -1,27 +1,27 @@
 import axios from 'axios';
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '/api/v1';
 
 class EmployeeService {
 
     getEmployees(){
-        return axios.get(EMPLOYEE_API_BASE_URL);
+        return axios.get(`${API_BASE_URL}/employees`);
     }
 
     createEmployee(employee){
-        return axios.post(EMPLOYEE_API_BASE_URL, employee);
+        return axios.post(`${API_BASE_URL}/employees`, employee);
     }
 
     getEmployeeById(employeeId){
-        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+        return axios.get(`${API_BASE_URL}/employees/${employeeId}`);
     }
 
     updateEmployee(employee, employeeId){
-        return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId, employee);
+        return axios.put(`${API_BASE_URL}/employees/${employeeId}`, employee);
     }
 
     deleteEmployee(employeeId){
-        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+        return axios.delete(`${API_BASE_URL}/employees/${employeeId}`);
     }
 }
 

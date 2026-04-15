@@ -7,7 +7,21 @@ class LoginComponent extends Component {
         this.state = {
             username: '',
             password: '',
-            isFocused: false
+            isFocused: false,
+            successMessage: ''
+        }
+        this.goToCreateAccount = this.goToCreateAccount.bind(this);
+    }
+
+    goToCreateAccount() {
+        this.props.history.push('/register');
+    }
+
+    componentDidMount() {
+        const { location } = this.props;
+        if (location && location.state && location.state.registered) {
+            this.setState({ successMessage: 'Registration completed. Please sign in.' });
+            this.props.history.replace({ pathname: '/login', state: {} });
         }
     }
 
@@ -30,6 +44,11 @@ class LoginComponent extends Component {
 
                 <div className="login-container">
                     <div className="glass-panel">
+                        {this.state.successMessage && (
+                            <div className="error-banner" style={{ marginBottom: '18px', background: 'rgba(34, 197, 94, 0.12)', borderColor: 'rgba(34, 197, 94, 0.35)', color: '#bbf7d0' }}>
+                                {this.state.successMessage}
+                            </div>
+                        )}
                         <div className="login-header">
                             <h2>Welcome Back</h2>
                             <p>Sign in to Employee Management System</p>
@@ -61,7 +80,7 @@ class LoginComponent extends Component {
                                 <label className="remember-me">
                                     <input type="checkbox" /> Remember me
                                 </label>
-                                <a href="#" className="forgot-password">Forgot Password?</a>
+                                <button type="button" className="forgot-password">Forgot Password?</button>
                             </div>
 
                             <button type="submit" className="login-btn">
@@ -70,7 +89,7 @@ class LoginComponent extends Component {
                         </form>
 
                         <div className="signup-link">
-                            Don't have an account? <a href="#">Create one</a>
+                            Don't have an account? <button type="button" className="signup-button" onClick={this.goToCreateAccount}>Create one</button>
                         </div>
                     </div>
                 </div>

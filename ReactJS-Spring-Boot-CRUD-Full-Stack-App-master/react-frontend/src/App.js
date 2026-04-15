@@ -9,9 +9,8 @@ import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 import LoginComponent from './components/LoginComponent';
-import TaskListComponent from './components/TaskListComponent';
-import CreateTaskComponent from './components/CreateTaskComponent';
 import DashboardComponent from './components/DashboardComponent';
+import RegisterComponent from './components/RegisterComponent';
 
 function App() {
   return (
@@ -22,12 +21,11 @@ function App() {
                     <Switch> 
                           <Route path = "/" exact component = {LoginComponent}></Route>
                           <Route path = "/login" component = {LoginComponent}></Route>
+                          <Route path = "/register" component = {RegisterComponent}></Route>
                           <Route path = "/dashboard" component = {DashboardComponent}></Route>
-                          <Route path = "/employees" exact component = {ListEmployeeComponent}></Route>
+                          <Route path = "/employees" component = {ListEmployeeComponent}></Route>
                           <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
                           <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
-                          <Route path = "/employees/:id/tasks" component = {TaskListComponent}></Route>
-                          <Route path = "/employees/:id/add-task/:taskId" component = {CreateTaskComponent}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
                 </div>

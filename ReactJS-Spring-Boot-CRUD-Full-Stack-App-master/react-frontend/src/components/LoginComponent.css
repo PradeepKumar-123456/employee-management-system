@@ -34,6 +34,19 @@
 
 .shape-1 {
     width: 400px;
+.forgot-password {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: #818cf8;
+    cursor: pointer;
+    font: inherit;
+    transition: color 0.2s;
+}
+
+.forgot-password:hover {
+    color: #a5b4fc;
+}
     height: 400px;
     background: #6366f1;
     top: -100px;
@@ -222,14 +235,19 @@
     color: #94a3b8;
 }
 
-.signup-link a {
+.signup-link .signup-button {
+    background: transparent;
+    border: none;
     color: #818cf8;
-    text-decoration: none;
     font-weight: 500;
     margin-left: 5px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
     transition: color 0.2s;
+    font-family: inherit;
 }
 
-.signup-link a:hover {
+.signup-link .signup-button:hover {
     color: #a5b4fc;
 }
