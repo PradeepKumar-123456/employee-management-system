@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowedOriginPatterns = {"https://*.onrender.com"})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/")
 public class HomeController {

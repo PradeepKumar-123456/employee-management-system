@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.javaguides.springboot.model.UserAccount;
 import net.javaguides.springboot.repository.UserAccountRepository;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowedOriginPatterns = {"https://*.onrender.com"})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {

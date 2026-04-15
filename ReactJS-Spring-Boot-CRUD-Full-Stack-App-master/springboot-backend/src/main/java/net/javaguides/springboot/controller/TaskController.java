@@ -13,7 +13,7 @@ import net.javaguides.springboot.model.Task;
 import net.javaguides.springboot.repository.EmployeeRepository;
 import net.javaguides.springboot.repository.TaskRepository;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowedOriginPatterns = {"https://*.onrender.com"})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/")
 public class TaskController {
