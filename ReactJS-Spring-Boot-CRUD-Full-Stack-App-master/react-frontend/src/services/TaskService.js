@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { getApiBaseUrl } from './apiBaseUrl';
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || '/api/v1';
+const BASE_URL = getApiBaseUrl();
 
 class TaskService {
 
