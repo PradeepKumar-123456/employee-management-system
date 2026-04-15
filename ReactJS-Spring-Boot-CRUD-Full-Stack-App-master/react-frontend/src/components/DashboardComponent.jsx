@@ -67,7 +67,7 @@ class DashboardComponent extends Component {
                 {/* Welcome Banner */}
                 <div className="dashboard-welcome">
                     <div className="welcome-text">
-                        <h1>👋 {greeting}, Admin!</h1>
+                        <h1><span role="img" aria-label="waving hand">👋</span> {greeting}, Admin!</h1>
                         <p>Here's what's happening with your team today.</p>
                     </div>
                     <div className="welcome-actions">
