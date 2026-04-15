@@ -1,12 +1,15 @@
-FROM eclipse-temurin:17-jdk-jammy AS build
-WORKDIR /workspace
+# Use Java 17
+FROM openjdk:17-jdk-slim
 
-COPY springboot-backend/ .
-RUN chmod +x mvnw
-RUN ./mvnw -B -DskipTests clean package
-
-FROM eclipse-temurin:17-jre-jammy
+# Set working directory
 WORKDIR /app
-COPY --from=build /workspace/target/app.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Copy all files
+COPY . .
+
+# Build the project
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
+
+# Run the jar
+CMD ["java", "-jar", "target/*.jar"]
