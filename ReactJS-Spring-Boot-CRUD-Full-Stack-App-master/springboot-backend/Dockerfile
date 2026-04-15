@@ -5,6 +5,12 @@ WORKDIR /app
 COPY . .
 
 RUN chmod +x mvnw
+
+# Build jar
 RUN ./mvnw clean package -DskipTests
 
-CMD ["java", "-jar", "target/springboot-backend-0.0.1-SNAPSHOT.jar"]
+# Rename jar to app.jar (IMPORTANT STEP)
+RUN mv target/*.jar app.jar
+
+# Run jar
+CMD ["java", "-jar", "app.jar"]
